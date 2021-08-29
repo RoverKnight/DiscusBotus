@@ -2,4 +2,7 @@
 /.gradle/
 /build/
 /build/classes/java/main/
+src/main/java/bot/controlCenter/Token
 src/main/java/bot/controlCenter/Token.java
+/build/classes/java/main/bot/controlCenter/Token
+/build/classes/java/main/bot/controlCenter/Token.java
