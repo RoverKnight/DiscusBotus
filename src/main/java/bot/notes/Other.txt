@@ -1,0 +1,44 @@
+THREAD + LISTENER STRUCTURE/ROADMAP
+===================================
+
+LINKED LOGIC
+------------
+- Thread handles initial response
+- Listener handles all responses requiring non-initial input
+    Example:
+      User: !kick person - handled by central listener & thread
+      Bot: Are you sure? - sent by thread
+      User: Yes - handled by command listener
+      Bot: Kicked person. - sent by command listener
+- Keep thread alive while Listener is alive, so that it's shown as a running thread
+
+RESPONSE LOGIC
+--------------
+// draft 1
+String[] responses = new String[4];
+...
+responses[stage-1] = args[0];
+
+if (stage == 1) {
+    // stage 1 code
+    if (responses[stage-1].equalsIgnoreCase("y") {
+        x
+    }
+    else if (responses[stage-1].equalsIgnoreCase("n") {
+        x
+    }
+    else {
+        x
+    }
+}
+else if (stage == 2) {
+    // stage 2 code
+}
+else if (stage == 3) {
+    // stage 3 code
+}
+else {
+    // invalid stage code
+}
+
+- Have stage be set to certain values if certain responses met?

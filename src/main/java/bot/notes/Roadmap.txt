@@ -1,0 +1,89 @@
+DISCUS BOTUS
+============
+
+IDEAS:
+- !draw + [thing] - draws something using templates or MATH
+- !turtle
+- !randomNumberBenchmark
+- split up commands into classes according to permission & whether they are
+  threaded needed (so that in !info they can be auto-assigned(?))
+- !help to get started (informs about !info & !commandList)
+- end command with ! to specify command end / possible separate message start
+- !demonstrate + [command] - demonstrates usage of a specified command
+- automatically create DB Dev/Admin/Tester roles & assign Admin role to owner
+- automatically assign Bots role to bots
+- !goodbye - basically !yeet but without re-invitation
+- !buildEmbed - build your own embed utilizing ListenerAdapter with staging
+
+
+IMPLEMENTATIONS TODO:
+TODO: !spam + [amount] + [interval]
+TODO: !spam + ["on"/"off"] + [interval]
+TODO: !spam + ["on"/"off"]
+TODO: !harass + [name] + ["on"/"off"] + [interval]
+TODO: !harass + [name] + ["on"/"off"]
+TODO: proper documentation w/ javadoc
+TODO: implement printing of what permission is needed for denied command
+TODO: implement !permissions - prints what permissions user has / what
+      commands they can use (!permissions + [username] for others?)
+TODO: implement separate command lists (!adminCommandList, !devCommandList, etc.)
+TODO: implement extra argument to all command lists, so that all lower-ranked
+      commands are also listed (e.g. !debugCommandList + "+")
+TODO: implement input restrictions field in info embed
+TODO: change shutdown to threaded process so that it's stoppable ?
+TODO: add "are you sure?" step to !shutdown
+
+TODO: work out responsive command structure (when user is supposed to respond
+      to something from the bot, which it then uses to respond again)
+      TODO: make !stop remove ListenerAdapters of responsive commands
+
+FIXES TODO:
+TODO: let specific-stop interrupt multi-string named threads (e.g. "Harass Hades")
+TODO: let !yeet be confirmed only by author
+TODO: disable yeet if a yeet command is already in process/waiting for reply
+TODO: improve command permission system
+TODO: fix permission checker (won't let db dev use !yeet)
+
+DONE TODAY:
+- 11/08 - created Test & TestListenerAdapter to test responsive command structure
+- 11/08 - linked Test with TestListenerAdapter
+- 11/08 - added restart & shutdown function to TestListenerAdapter
+- 11/08 - added complete 3-layer responsive dialog tree to !test
+- 11/08 - renamed !test to !animals (includes corresponding ListenerAdapter)
+- 11/08 -
+- 11/08 -
+- 11/08 -
+- 11/08 -
+- 11/08 -
+- 11/08 -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[end of file]

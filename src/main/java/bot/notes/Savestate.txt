@@ -1,0 +1,42 @@
+    Member targetM = null;
+    if (!nameList.isEmpty()) {
+        targetM = nameList.get(0);
+        c.sendMessage(targetM.toString()).queue();
+
+        try {
+            g.kick(targetM);
+        } catch (HierarchyException e) {
+            error403MissingPermission();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[end of file]

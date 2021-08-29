@@ -1,0 +1,87 @@
+DONE PREVIOUSLY:
+- 28/07 - fixed Stop.isFinished() for specific requests
+- 28/07 - merged handling of "all" and specific requests in Stop.run()
+- 28/07 - fixed Stop() fix: Stop.isFinished() can't handle "all" requests
+- 28/07 - cleaned up Stop() code
+- 28/07 - implement stop fix in stopNoComment
+- 28/07 - stopped !commandList infinite loop
+
+- 30/07 - added !isOwner command
+- 30/07 - created method for multi-argument names -> getConnectedName()
+- 30/07 - fixed getConnectedName()
+- 30/07 - moved code to MsgListener() from CommandList(), PrintMembers()
+          & SayHello(), as they don't need to be threads
+- 30/07 - implemented bad input prevention for applicable commands
+- 30/07 - separated threaded & non-threaded commands (only threads cause missed threads)
+- 30/07 - fixed sayHello (printed hello even when member didn't exist)
+
+- 31/07 - implemented !enable / !disable
+- 31/07 - implemented role-recognition for DB Tester, DB Admin & DB Dev roles
+- 31/07 - worked out command access logic
+- 31/07 - logged all known commands in String[] MsgListener.commands
+- 31/07 - implemented missing permission message for all commands
+
+- 02/08 - Fixed stop thread printing/self-interrupt logic when no threads running
+- 02/08 - implemented randomized messages for !monkey
+- 02/08 - implemented !shutdown command
+- 02/08 - learned that return interrupts own thread when written in run()
+
+- 03/08 - implemented separate dev-command block
+- 03/08 - implemented !info command
+- 03/08 - learned embeds
+- 03/08 - formatted !info responses as embeds
+- 03/08 - added single integer input formats to !monkey
+- 03/08 - cleaned up !monkey input format logic
+- 03/08 - wrote !info embed responses for all current commands
+- 03/08 - implemented !info error message if requested command doesn't exist
+
+- 04/08 - added branch to !info which informs of missing info for a command
+          (triggered if command is logged in MsgListener.commands but !info
+          doesn't yet have it's usage details)
+
+- 09/08 - SUCCESSFULLY implemented inspiroBot API with !inspiro !!!
+- 09/08 - crudely implemented !yeet
+- 09/08 - fixed !yeet kick ability (can now kick people)
+- 09/08 - re-implemented !yeet as threaded command, is now stoppable
+- 09/08 - added re-invite to !yeet
+- 09/08 - added countdown to !yeet
+- 09/08 - added "Are you sure?" step to !yeet (though it's pretty bad :/ )
+
+- 10/08 - added info for !shutdown
+- 10/08 - added confirmation step to !shutdown
+- 10/08 - updated info for !yeet
+- 10/08 - updated JDA version
+- 10/08 - removed/replaced deprecated jcenter() in build.gradle
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[end of file]
