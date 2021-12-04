@@ -22,6 +22,8 @@ repositories {
 dependencies {
     implementation 'com.konghq:unirest-java:3.11.12'
     implementation("net.dv8tion:JDA:$jdaVersion")
+    implementation 'de.sematre.dsbmobile:DSBmobile-API:1.8'
+
 
 
     /*

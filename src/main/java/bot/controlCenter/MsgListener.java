@@ -3,10 +3,24 @@ package bot.controlCenter;
 import bot.Animals;
 import bot.Shutdown;
 import bot.Yeet;
+import de.sematre.dsbmobile.DSBMobile;
+//import gui.ava.html.image.generator.HTMLImageGenerator;
+import html2Image.HTMLImageGenerator;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import okhttp3.internal.platform.Platform;
+
+import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JEditorPane;
+
 
 import javax.annotation.Nonnull;
 import javax.imageio.ImageIO;
@@ -16,6 +30,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
+import java.util.Scanner;
+import java.util.UUID;
 
 public class MsgListener extends ListenerAdapter {
 
@@ -352,9 +368,106 @@ public class MsgListener extends ListenerAdapter {
             }
         }
 
+        else if (args[0].equalsIgnoreCase("dsb")) {
+
+            DSBMobile dsbMobile = new DSBMobile(Token.dsbUsername, Token.dsbPassword);
+
+            ArrayList<DSBMobile.News> newsList = dsbMobile.getNews();
+            ArrayList<DSBMobile.TimeTable> timeTables = dsbMobile.getTimeTables();
+
+            int i = 0;
+            for (DSBMobile.TimeTable timeTable : timeTables) {
+
+                // WORKING ATTEMPT:
+                UUID uuid = timeTable.getUUID();
+                String date = timeTable.getDate();
+
+                String title = timeTable.getTitle();
+                String detail = timeTable.getDetail(); // link to table
+
+                HTMLImageGenerator htmlImageGenerator = new HTMLImageGenerator();
+                htmlImageGenerator.loadUrl(detail);
+
+                BufferedImage bufferedImage = htmlImageGenerator.getBufferedImage();
+
+                // turns image into file (discord only accepts String or File)
+                File imgFile = new File("table" + i + ".png");
+
+                try {
+                    ImageIO.write(bufferedImage, "png", imgFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // sends image
+                c.sendFile(imgFile).queue();
+
+                // HTML fetching: -> TODO: parse html for table content?
+                String content = null;
+                URLConnection connection = null;
+                try {
+                    connection =  new URL("http://www.google.com").openConnection();
+                    Scanner scanner = new Scanner(connection.getInputStream());
+                    scanner.useDelimiter("\\Z");
+                    content = scanner.next();
+                    scanner.close();
+                }catch ( Exception ex ) {
+                    ex.printStackTrace();
+                }
+
+                /* PREVIOUS (NOT WORKING) ATTEMPT:
+                String[] html = content.split(" ");
+
+                for (String stuff : html) {
+                    c.sendMessage(stuff).queue();
+                }
+
+                int width = 1920, height = 1080;
+                // Create a `BufferedImage` and create it's `Graphics`
+                BufferedImage image = GraphicsEnvironment.getLocalGraphicsEnvironment()
+                        .getDefaultScreenDevice().getDefaultConfiguration()
+                        .createCompatibleImage(width, height);
+                Graphics graphics = image.createGraphics();
+                // Create an `JEditorPane` and invoke `print(Graphics)`
+                JEditorPane jep = new JEditorPane("text/html", content);
+                jep.setSize(width, height);
+                jep.print(graphics);
+                // Output the `BufferedImage` via `ImageIO`
+                File imgFile = new File("table" + i + ".png");
+                try {
+                    ImageIO.write(bufferedImage, "png", imgFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                c.sendFile(imgFile).queue();
+                */
+
+                /* CURRENT ATTEMPT
+                JFXPanel jfxPanel = new JFXPanel(); // Scrollable JCompenent
+                Platform.runLater( () -> { // FX components need to be managed by JavaFX
+                    WebView webView = new WebView();
+                    webView.getEngine().loadContent( "<html> Hello World!" );
+                    webView.getEngine().load( "http://www.stackoverflow.com/" );
+                    jfxPanel.setScene( new Scene( webView ) );
+                });
+
+                 */
+
+
+
+
+
+                i++;
+
+                //break; // FIXME
+            }
+
+        }
+
         // 'http://inspirobot.me/api?generate=true';
 
         else commandFound = false;
+
         return commandFound;
     }
 
